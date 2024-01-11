@@ -18,9 +18,15 @@
         <div class="site-name"><h1>The Tech Blog</h1></div>
     </header>
     <main>
-        {{{body}}}
+        {{{body}}} 
     </main>
+
+    {{#if loggedIn}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+
     <footer>
         <p>&copy; 2024 Tech Blog</p>
+    </footer>
 </body>
 </html>
