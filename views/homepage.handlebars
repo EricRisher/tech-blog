@@ -1,17 +1,9 @@
 {{#each posts as |post|}}
-<div class="post">
-    <h2>{{post.title}}</h2>
-    <p>{{post.content}}</p>
 
-    <!-- Check if there are comments for the current post -->
-    {{#if post.comments.length}}
-    <ul class="comments">
-        {{#each post.comments as |comment|}}
-        <li>{{comment.comment_text}} - by {{comment.user.username}}</li>
-        {{/each}}
-    </ul>
-    {{else}}
-    <p>No comments for this post.</p>
-    {{/if}}
+{{> post-info post}}
 </div>
+
+{{else}}
+<h6>There are currently no posts.</h6>
+
 {{/each}}

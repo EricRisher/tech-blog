@@ -1,9 +1,13 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
-const Post = require('./Post'); // Import the Post model
+const Post = require('./Post');
 
-class User extends Model {}
+class User extends Model {
+  checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
+}
 
 User.init(
   {
@@ -55,8 +59,8 @@ User.init(
 );
 
 User.hasMany(Post, {
-  foreignKey: 'user_id', // Assuming 'user_id' is the foreign key in the Post model
-  onDelete: 'CASCADE', // Adjust as needed
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE',
 });
 
 module.exports = User;

@@ -11,8 +11,12 @@
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/logout">Logout</a></li>
+                {{#if loggedIn}}
+                <li><a href="/profile">Profile</a></li>
+                <li><button id="logout">Logout</button></li>
+                {{else}}
+                <li><a href="/login">Login</a></li>
+                {{/if}}
             </ul>
         </nav>
         <div class="site-name"><h1>The Tech Blog</h1></div>
@@ -26,7 +30,7 @@
     {{/if}}
 
     <footer>
-        <p>&copy; 2024 Tech Blog</p>
+        <p>&copy; 2024 Tech Blog by Eric Risher</p>
     </footer>
 </body>
 </html>

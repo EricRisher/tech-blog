@@ -2,7 +2,11 @@ module.exports = {
   format_date: (date) => {
     return date.toLocaleDateString();
   },
-  format_amount: (amount) => {
-    return parseInt(amount).toLocaleString();
+  format_plural: (word, amount) => {
+    if (amount !== 1) {
+      return `${word}s`;
+    }
+
+    return word;
   },
 };

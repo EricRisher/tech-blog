@@ -11,7 +11,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000; /* Ensure the header is above other content */
+  z-index: 1000;
 }
 
 nav ul {
@@ -31,6 +31,12 @@ nav ul li {
 nav ul li a {
   color: #fff;
   text-decoration: none;
+}
+
+#logout {
+  background: none;
+  border: none;
+  color: #fff;
 }
 
 header h1 {
@@ -126,4 +132,26 @@ label {
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+.post a{
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.post a:hover{
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #3e1818;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
