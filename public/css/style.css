@@ -1,13 +1,24 @@
+/* Colors */
+:root {
+  --main: #2b2d42;
+  --secondary: #8d99ae;
+  --accent: #edf2f4;
+  --text: #f9f9f9;
+}
+
+/* Base Styles */
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  color: #000;
+  color: var(--text);
+  background-color: var(--main);
 }
 
+/* Header Styles */
 header {
-  background-color: #3e1818;
+  background-color: var(--secondary);
   position: fixed;
   top: 0;
   width: 100%;
@@ -21,26 +32,32 @@ nav ul {
 }
 
 nav ul li {
-  float: left;
+  float: right;
   margin: 5px;
   color: #fff;
-  padding-left: 25px;
+  padding-right: 25px;
   text-decoration: none;
+  font-weight: bold;
 }
 
 nav ul li a {
   color: #fff;
   text-decoration: none;
+  font-weight: bold;
 }
 
 #logout {
   background: none;
   border: none;
   color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0!important;
+  width: fit-content!important;
 }
 
 header h1 {
-  color: #3e1818;
+  color: var(--main);
   margin: 0;
   margin-left: 40px;
   text-align: left;
@@ -52,15 +69,18 @@ header h1 {
   color: #fff;
   margin: 0;
   text-align: left;
-  background-color: white;
+  background-color: var(--accent);
   width: fit-content;
   border-radius: 3px;
   box-shadow: 3px 3px #888888;
 }
 
+/* Main Content Styles */
 main {
   padding-top: 120px;
 }
+
+/* Post Styles */
 
 .post {
   background-color: #fff;
@@ -78,11 +98,11 @@ main {
   border-radius: 3px;
 }
 
-.post button {
+button {
   width: 130px;
   padding: 10px;
   border: none;
-  background-color: #3e1818;
+  background-color: var(--secondary);
   color: #fff;
   cursor: pointer;
 }
@@ -90,60 +110,14 @@ main {
 .post h2 {
   margin: 0;
   margin-bottom: 10px;
-  color: #333
+  color: var(--secondary);
 }
 
 .post p {
-  color: #666
+  color: var(--secondary);
 }
 
-.comments {
-  list-style: none;
-  padding: 0;
-  margin-top: 10px;
-}
-
-.comments li {
-  border-bottom: 1px solid #ddd;
-  padding: 8px;
-}
-
-.comments li:last-child {
-  border-bottom: none;
-}
-
-.form {
-  margin-top: 20px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.card-content{
-  margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-decoration: none;
-
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  color: #333;
-}
-
-.form-input {
-  width: 300px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.post a{
+.post a {
   margin-bottom: 20px;
   text-decoration: none;
   color: #000;
@@ -151,12 +125,168 @@ label {
   font-size: 20px;
 }
 
-.post a:hover{
+.post a:hover {
   text-decoration: underline;
 }
 
+
+.edit-post-container, .new-post-container{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  padding: 20px;
+  margin: 0 auto;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-post-container input, .new-post-container input {
+  width: 90%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.edit-post-container button, .new-post-container button {
+  width: 130px;
+  padding: 10px;
+  border: none;
+  background-color: var(--secondary);
+  color: #fff;
+  cursor: pointer;
+  margin: 3px;
+  margin-top: 10px;
+  align-self: center;
+}
+
+/* Comments Styles */
+.comments {
+  list-style: none;
+  padding: 5px;
+  margin-top: 10px;
+  background-color: rgb(63, 65, 82);
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--accent);
+  color: var(--secondary);
+  width: fit-content;
+}
+
+.comment-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.comment-container textarea {
+  width: 200px;
+  border: 1px solid #ddd;
+  margin-left: 15px;
+}
+
+/* Form Styles */
+form {
+  margin-top: 20px;
+  background-color: rgb(63, 65, 82);
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-input, .comment-body {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+form a {
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--accent);
+  width: fit-content;
+  border-radius: 3px;
+  box-shadow: 3px 3px #888888;
+  color: black;
+  padding: 2px;
+  margin-top: 5px;
+}
+
+.created-by {
+  color: var(--secondary);
+  font-size: 12px;
+}
+
+/* Card Content Styles */
+
+.card-content:hover {
+  transform: scale(1.01);
+  transition: transform 0.2s;
+}
+
+.card-content:hover {
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.433);
+}
+
+.card-content {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  background-color: rgb(63, 65, 82);
+  margin: 5px;
+  flex: 1;
+}
+
+.card-content h3 {
+  margin: 0;
+  margin-bottom: 10px;
+  color: var(--secondary);
+}
+
+.card-content p {
+  color: rgb(193, 202, 219);
+}
+
+.card-content a {
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--accent);
+  width: fit-content;
+  border-radius: 3px;
+  box-shadow: 3px 3px #888888;
+  color: black;
+  padding: 2px;
+}
+
+.back {
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--accent);
+  width: fit-content;
+  border-radius: 3px;
+  box-shadow: 3px 3px #888888;
+  color: black;
+  padding: 2px;
+  font-size: 20px;
+}
+
+/* Footer Styles */
 footer {
-  background-color: #3e1818;
+  background-color: var(--secondary);
   color: #fff;
   padding: 10px;
   text-align: center;
