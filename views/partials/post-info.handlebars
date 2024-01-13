@@ -1,18 +1,12 @@
 <div>
-    <header class="card-header">
-
-        <div class="column">
-            <a href="/post/{{id}}">{{title}} </a></p>
-        </div>
-
-    </header>
 
     <div class="card-content">
+        <h3>{{title}}</h3>
         <div>
-            {{post_content}}
+            <p>{{content}}</p>
         </div>
         <div>
-            <b>{{user.username}}</b> |
+            <b>{{user.username}}</b> 
             | {{format_date created_at}} | <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment"
                 comments.length}}</a>
         </div>

@@ -4,7 +4,7 @@ const { Post, User, Comment } = require('../models');
 router.get('/', async (req, res) => {
   try {
     // Fetch all posts with associated user and comments
-    const dbPostData = await Post.findAll({
+    Post.findAll({
       attributes: ['id', 'title', 'content', 'created_at'],
       order: [['created_at', 'DESC']],
       include: [
@@ -27,13 +27,12 @@ router.get('/', async (req, res) => {
           },
         },
       ],
-    });
-
-    const posts = dbPostData.map((post) => post.get({ plain: true }));
-
-    res.render('homepage', {
-      posts,
-      loggedIn: req.session.loggedIn,
+    }).then((postData) => {
+      const posts = postData.map((post) => post.get({ plain: true }));
+      res.render('homepage', {
+        posts,
+        loggedIn: req.session.loggedIn,
+      });
     });
   } catch (error) {
     console.error(error);

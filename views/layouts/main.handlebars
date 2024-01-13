@@ -12,7 +12,8 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 {{#if loggedIn}}
-                <li><a href="/profile">Profile</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/dashboard/create">Create Post</a></li>
                 <li><button id="logout">Logout</button></li>
                 {{else}}
                 <li><a href="/login">Login</a></li>
@@ -30,7 +31,7 @@
     {{/if}}
 
     <footer>
-        <p>&copy; 2024 Tech Blog by Eric Risher</p>
+        <p>&copy; 2024 Tech Blog by <a href="https://github.com/ericrisher">Eric Risher</a></p>
     </footer>
 </body>
 </html>

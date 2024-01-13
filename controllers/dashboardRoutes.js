@@ -15,13 +15,7 @@ router.get('/', async (req, res) => {
       },
       {
         model: Comment,
-        attributes: [
-          'id',
-          'comment_text',
-          'post_id',
-          'user_id',
-          'created_at',
-        ],
+        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
         include: {
           model: User,
           attributes: ['username'],
@@ -43,46 +37,51 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/edit/:id', withAuth, async (req, res) => {
-  Post.findOne({
-    where: {
-      id: req.params.id,
-    },
-    attributes: ['id', 'title', 'content', 'created_at'],
-    include: [
-      {
-        model: User,
-        attributes: ['username'],
+  try {
+    const postData = await Post.findOne({
+      where: {
+        id: req.params.id,
       },
-      {
-        model: Comment,
-        attributes: [
-          'id',
-          'comment_text',
-          'post_id',
-          'user_id',
-          'created_at',
-        ],
-        include: {
+      attributes: ['id', 'title', 'content', 'created_at'],
+      include: [
+        {
           model: User,
           attributes: ['username'],
         },
-      },
-    ],
-  }).then((postData) => {
+        {
+          model: Comment,
+          attributes: [
+            'id',
+            'comment_text',
+            'post_id',
+            'user_id',
+            'created_at',
+          ],
+          include: {
+            model: User,
+            attributes: ['username'],
+          },
+        },
+      ],
+    });
+
     if (!postData) {
       res.status(404).json({ message: 'No post found with that id!' });
       return;
     }
+
     const post = postData.get({ plain: true });
-    res
-      .render('edit-post', {
-        post,
-        loggedIn: true,
-      })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
-  });
+
+    // Rendering the 'edit-post' view
+    res.render('edit-post', {
+      post,
+      loggedIn: true,
+    });
+  } catch (err) {
+    // Handle rendering errors
+    console.error(err);
+    res.status(500).json(err);
+  }
 });
 
 router.get('/create/', withAuth, (req, res) => {
@@ -98,13 +97,7 @@ router.get('/create/', withAuth, (req, res) => {
       },
       {
         model: Comment,
-        attributes: [
-          'id',
-          'comment_text',
-          'post_id',
-          'user_id',
-          'created_at',
-        ],
+        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
         include: {
           model: User,
           attributes: ['username'],
