@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const { Post, User, Comment } = require('../models');
+const { Post } = require('../models/Post.js');
+const { User } = require('../models/User.js');
+const { Comment } = require('../models/Comment.js');
 
 // Route to render the homepage with all posts and associated user and comments
 router.get('/', async (req, res) => {
