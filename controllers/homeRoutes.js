@@ -42,10 +42,7 @@ router.get('/', async (req, res) => {
 
 router.get('/post/:id', async (req, res) => {
   try {
-    const dbPostData = await Post.findOne({
-      where: {
-        id: req.params.id,
-      },
+    const dbPostData = await Post.findByPk(req.params.id, {
       attributes: ['id', 'title', 'content', 'created_at'],
       include: [
         {
@@ -57,10 +54,10 @@ router.get('/post/:id', async (req, res) => {
             'user_id',
             'created_at',
           ],
-        },
-        {
-          model: User,
-          attributes: ['username'],
+          include: {
+            model: User,
+            attributes: ['username'],
+          },
         },
       ],
     });

@@ -1,19 +1,36 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
-  Comment.findAll({})
-    .then((commentData) => res.json(commentData))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
+  try {
+    Comment.findAll({
+      attributes: ['id', 'comment_text', 'user_id', 'post_id', 'created_at'],
+      order: [['created_at', 'DESC']],
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
     });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error });
+  }
 });
 
 router.get('/:id', async (req, res) => {
   try {
-    const commentData = await Comment.findByPk(req.params.id);
+    const commentData = await Comment.findByPk(req.params.id, {
+      attributes: ['id', 'comment_text', 'user_id', 'post_id', 'created_at'],
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
 
     if (!commentData) {
       res.status(404).json({ message: 'No comment found with that id!' });

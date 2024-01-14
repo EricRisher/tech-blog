@@ -11,13 +11,15 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({ helpers, partialsDir: [path.join(__dirname, 'views', 'partials')] });
+const hbs = exphbs.create({
+  helpers,
+  partialsDir: [path.join(__dirname, 'views', 'partials')],
+});
 
 const sess = {
   secret: 'Super big secret',
   cookie: {
-    // Stored in milliseconds (86400 === 1 day)
-    maxAge: 86400,
+    maxAge: 86400000,
     httpOnly: false,
     secure: false,
   },
