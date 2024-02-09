@@ -30,6 +30,7 @@ const commentFormHandler = async function (event) {
       if (response.ok) {
         // Reload the page to display the new comment
         document.location.reload();
+        console.log('Comment created successfully!');
       } else {
         // Display an alert with the error message if unsuccessful
         alert('Failed to create comment');

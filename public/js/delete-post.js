@@ -10,9 +10,6 @@ async function deleteFormHandler(event) {
     // Send a DELETE request to delete the specified post
     const response = await fetch(`/api/posts/${id}`, {
       method: 'DELETE',
-      body: JSON.stringify({
-        post_id: id,
-      }),
       headers: {
         'Content-Type': 'application/json',
       },

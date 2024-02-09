@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const { Post } = require('../../models/Post.js');
+const Post = require('../../models/Post.js');
+const User = require('../../models/User.js');
+const Comment = require('../../models/Comment.js');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
@@ -17,6 +19,7 @@ router.post('/', withAuth, async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
+    // Use async/await to await the completion of Post.findAll()
     const dbPostData = await Post.findAll({
       include: [
         {
@@ -33,23 +36,25 @@ router.get('/', async (req, res) => {
       ],
     });
 
-    if (!dbPostData) {
-      res.status(404).json({ message: 'No post found with that id!' });
+    // Check if any posts were found
+    if (dbPostData.length === 0) {
+      res.status(404).json({ message: 'No posts found!' });
       return;
     }
 
+    // Send the post data as JSON response
     res.status(200).json(dbPostData);
   } catch (error) {
+    console.log(error);
     res.status(500).json(error);
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const postData = await Post.destroy({
       where: {
         id: req.params.id,
-        user_id: req.session.user_id,
       },
     });
 
@@ -61,6 +66,25 @@ router.delete('/:id', withAuth, async (req, res) => {
     res.status(200).json(postData);
   } catch (error) {
     res.status(500).json(error);
+  }
+});
+
+router.put('/:id', async (req, res) => {
+  try {
+    const postData = await Post.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!postData) {
+      res.status(404).json({ message: 'No post found with this id!' });
+      return;
+    }
+
+    res.status(200).json(postData);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 

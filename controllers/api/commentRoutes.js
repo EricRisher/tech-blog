@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { Comment } = require('../../models/Comment.js');
-const { User } = require('../../models/User.js');
+const Comment = require('../../models/Comment.js');
+const User = require('../../models/User.js');
 const withAuth = require('../../utils/auth');
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    Comment.findAll({
+    const commentData = await Comment.findAll({
       attributes: ['id', 'comment_text', 'user_id', 'post_id', 'created_at'],
       order: [['created_at', 'DESC']],
       include: [
@@ -15,6 +15,8 @@ router.get('/', (req, res) => {
         },
       ],
     });
+    console.log('Comments Data:', commentData);
+    res.status(200).json(commentData);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error });
@@ -53,6 +55,7 @@ router.post('/', async (req, res) => {
     });
 
     res.status(200).json(newComment);
+    console.log(newComment);
   } catch (error) {
     res.status(400).json(error);
   }

@@ -71,6 +71,7 @@ router.get('/post/:id', async (req, res) => {
       ],
     });
 
+
     // If no post is found with the given id, return a 404 status
     if (!dbPostData) {
       res.status(404).json({ message: 'No post found with this id' });
