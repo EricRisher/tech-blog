@@ -166,13 +166,16 @@ button {
   margin-top: 10px;
   background-color: rgb(63, 65, 82);
   margin: 5px;
+  margin-left: 30px;
+  border-radius: 5px;
+  width: 95%;
 }
 
 .comment {
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
-  padding: 5px;
+  padding: 10px;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: var(--accent);
@@ -185,17 +188,35 @@ button {
   margin-bottom: 5px;
 }
 
+.comment-text{
+  margin: 0;
+  margin-bottom: 5px;
+  color: #292929;
+}
+
 .comment-container {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: space-around;
+  align-items:center;
+
 }
 
 .comment-container textarea {
   width: 200px;
   border: 1px solid #ddd;
   margin-left: 15px;
+}
+
+.add-comment-btn {
+  background-color: var(--secondary);
+  color: #fff;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 5px;
+
 }
 
 /* Form Styles */
@@ -232,6 +253,8 @@ form a {
 
 .comment-form {
   margin: 5px;
+  margin-left: 30px;
+  max-width: 600px;
 }
 
 .created-by {
@@ -284,6 +307,14 @@ form a {
 
 .card-container:last-child {
   margin-bottom: 60px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 99%;
+  margin-left: 10px;
 }
 
 

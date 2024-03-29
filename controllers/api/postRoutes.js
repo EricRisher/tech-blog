@@ -50,6 +50,52 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Route to render a specific post with associated comments and user
+router.get('/:id', async (req, res) => {
+  try {
+    // Find a specific post by primary key, including associated comments and user
+    const dbPostData = await Post.findByPk(req.params.id, {
+      attributes: ['id', 'title', 'content', 'created_at'],
+      include: [
+        {
+          model: Comment,
+          attributes: [
+            'id',
+            'comment_text',
+            'post_id',
+            'user_id',
+            'created_at',
+          ],
+          include: {
+            model: User,
+            attributes: ['username'],
+          },
+        },
+      ],
+    });
+
+
+    // If no post is found with the given id, return a 404 status
+    if (!dbPostData) {
+      res.status(404).json({ message: 'No post found with this id' });
+      return;
+    }
+
+    // Get plain data for the post
+    const post = dbPostData.get({ plain: true });
+
+    // Render the 'post' view with the post and logged-in status
+    res.render('post', {
+      post,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    // Log and handle errors during data retrieval or rendering
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 router.delete('/:id', async (req, res) => {
   try {
     const postData = await Post.destroy({

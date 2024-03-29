@@ -6,8 +6,8 @@
             <p>{{content}}</p>
         </div>
         <div class="card-footer">
-            <b>{{user.username}}</b> 
-            | {{format_date created_at}} | <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment"
+            <b>{{User.username}}</b> 
+            | {{format_date created_at}} | <a href="/api/posts/{{id}}">{{comments.length}} {{format_plural "comment"
                 comments.length}}</a>
         </div>
 

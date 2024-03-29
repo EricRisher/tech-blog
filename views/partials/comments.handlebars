@@ -1,9 +1,8 @@
-{{log post}}
 <div class="comments">
-    {{#each this}}
+    {{#each Comments}}
     <div class="comment">
-        <p>{{user.username}} on {{format_date created_at}}</p>
-        <div class="text">{{comment_text}}</div>
+        <p><strong>{{User.username}}</strong> on {{format_date created_at}}</p>
+        <div class="comment-text">{{comment_text}}</div>
     </div>
     {{/each}}
 </div>
