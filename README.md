@@ -17,6 +17,8 @@
   I built QuantumByte to create a specialized platform for developers to easily share and engage with technical content, filling a gap in the community for a dedicated space that supports both writing and interactive discussions. This project allowed me to harness modern web technologies and contribute to the developer ecosystem by fostering a community where knowledge and experiences can be shared and discussed freely.
 
   QuantumByte addresses the need for a centralized, developer-focused platform where individuals can publish, share, and interact with technical content. It solves the problem of scattered technical discussions and content across various platforms by providing a dedicated space for developers to connect, share their insights, and learn from each other's experiences. This encourages a more cohesive community and enriches the collective knowledge base of the tech industry.
+
+Test out the site [Here!](https://quantum-byte-86d6513b02b4.herokuapp.com/)
  
 
   ## Installation
